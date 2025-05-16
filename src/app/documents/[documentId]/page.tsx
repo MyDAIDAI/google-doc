@@ -1,10 +1,17 @@
+import { Editor } from './editor';
+
 interface DocumentIdPageProps {
-  params: Promise<{documentId: string}>
+  params: Promise<{ documentId: string }>;
 }
 
-const DocumentIdPage = ({params}: DocumentIdPageProps) => {
-  const documentId = params.documentId;
-  return <>DocumentI: {documentId}</>;
-}
+const DocumentIdPage = async ({ params }: DocumentIdPageProps) => {
+  const { documentId } = await params; // 异步获取路径参数
+  return (
+    <div>
+      DocumentI: {documentId}
+      <Editor />
+    </div>
+  );
+};
 
-export default DocumentIdPage
+export default DocumentIdPage;
