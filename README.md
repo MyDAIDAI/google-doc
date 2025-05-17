@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 学习nextjs项目之谷歌文档
+
+为了深入学习`nextjs`相关技术栈，开启了这个系列，该项目为谷歌文档，主要实现以下功能：
+
+- [ ] 文本编辑器
+- [ ] 个人主页
+- [ ] 实时协同，完成相关系统设计
+
+暂时预定这些内容，以后有新的计划再加入
+
+### 文本编辑器
+
+主要使用`tiptap`
