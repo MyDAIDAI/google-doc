@@ -6,6 +6,7 @@ import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
+import Image from '@tiptap/extension-image'
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
@@ -20,6 +21,7 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit,
+      Image,
       TaskList,
       TaskItem.configure({
         nested: true,
