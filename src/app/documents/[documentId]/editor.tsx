@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from 'react';
 
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'  
@@ -12,6 +11,8 @@ import ImageResize from 'tiptap-extension-resize-image'
 import Underline from '@tiptap/extension-underline'
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import FontFamily from '@tiptap/extension-font-family';
+import TextStyle from '@tiptap/extension-text-style';
 
 import { useEditorStore } from "@/store/use-editor-store";
 
@@ -32,6 +33,8 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit,
+      FontFamily,
+      TextStyle,
       Image,
       ImageResize,
       TaskList,
