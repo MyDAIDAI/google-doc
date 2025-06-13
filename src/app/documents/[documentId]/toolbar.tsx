@@ -1,6 +1,7 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
 
+import { type ColorResult, SketchPicker } from "react-color";
 import { type Level } from '@tiptap/extension-heading';
 import { cn } from "@/lib/utils";
 import { BoldIcon, ChevronDownIcon, ItalicIcon, LucideIcon, ListTodoIcon, MessageCircleIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon } from "lucide-react";
@@ -11,6 +12,32 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu" 
+
+
+const TextColorButton = () => {
+  const {editor} = useEditorStore();
+
+  const value = editor?.getAttributes('textStyle').color || '#000000';
+  const onChange = (color: ColorResult) => {
+    editor?.chain().focus().setColor(color.hex).run()
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className={cn("h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm")}>
+          <span className="text-xs">A</span>
+          <div className="h-0.5 w-full" style={{ backgroundColor: value }}></div>
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent content="p-2.5">
+        <SketchPicker color={value} onChange={onChange}/>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+
+}
+
 
 const HeadingLevelButton = () => {
   const { editor } = useEditorStore();
@@ -197,7 +224,7 @@ export const Toolbar = () => {
     {
       sections[1].map((item) => <ToolbarButton key={item.label} {...item} />)
     }
-    {/* TODO: Text color */}
+    <TextColorButton />
     <Separator orientation="vertical" className="h-6 bg-neutral-300" />
     {/* TODO: Highlight color */}
     <Separator orientation="vertical" className="h-6 bg-neutral-300" />
