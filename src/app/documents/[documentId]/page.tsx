@@ -6,7 +6,7 @@ interface DocumentIdPageProps {
 }
 
 const DocumentIdPage = async ({ params }: DocumentIdPageProps) => {
-  const { documentId } = await params; // 异步获取路径参数
+  // const { documentId } = await params; // 异步获取路径参数
   return (
     <div className="min-h-screen bg-[#FAFBFD]">
       <Toolbar />
