@@ -1,4 +1,5 @@
 "use client";
+import { useState } from 'react';
 import { Separator } from "@/components/ui/separator";
 
 import { type ColorResult, SketchPicker } from "react-color";
@@ -37,10 +38,11 @@ const HighlightColorButton = () => {
 
 const TextColorButton = () => {
   const {editor} = useEditorStore();
+  const [value, setValue] = useState(editor?.getAttributes('textStyle').color || '#000000')
 
-  const value = editor?.getAttributes('textStyle').color || '#000000';
   const onChange = (color: ColorResult) => {
-    editor?.chain().focus().setColor(color.hex).run()
+    editor?.chain().focus().setColor(color.hex).run();
+    setValue(editor?.getAttributes('textStyle').color || '#000000');
   }
 
   return (
