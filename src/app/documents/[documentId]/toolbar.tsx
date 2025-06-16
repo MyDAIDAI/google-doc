@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Separator } from "@/components/ui/separator";
 
 import { type ColorResult, SketchPicker } from "react-color";
@@ -62,6 +62,7 @@ const TextColorButton = () => {
 
 
 const HeadingLevelButton = () => {
+  // const [currentHeading, setCurrentHeading] = useState('Normal Text');
   const { editor } = useEditorStore();
 
   const headings = [
@@ -81,6 +82,7 @@ const HeadingLevelButton = () => {
     }
     return 'Normal Text';
   }
+  
 
   return (
     <DropdownMenu>
