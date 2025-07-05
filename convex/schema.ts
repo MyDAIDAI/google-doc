@@ -4,12 +4,16 @@ import { v } from "convex/values";
 
 export default defineSchema({
   documents: defineTable({
-    // name: v.string(),
     title: v.string(),
-    // content: v.string(),
-    // createdAt: v.number(),
-    // updatedAt: v.number(),
-    // createdBy: v.id("users"),
-    // updatedBy: v.id("users"),
-  }),
+    initialContent: v.optional(v.string()),
+    ownerId: v.string(),
+    roomId: v.optional(v.string()),
+    organizationId: v.optional(v.string()),
+  })
+    .index("by_owner_id", ["ownerId"])
+    .index("by_organization_id", ["organizationId"])
+    .searchIndex("search_title", {
+      searchField: "title",
+      filterFields: ['ownerId', 'organizationId']
+    }),
 });
