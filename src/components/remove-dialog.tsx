@@ -16,7 +16,8 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
   const remove = useMutation(api.documents.removeById);
   const [isRemoving, setIsRemoving] = useState(false);
 
-  const onDelete = async () => {
+  const onDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setIsRemoving(true);
     await remove({ id: documentId });
     setIsRemoving(false);
