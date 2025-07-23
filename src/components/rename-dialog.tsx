@@ -18,11 +18,14 @@ export const RenameDialog = ({ documentId, children, initialTitle }: RenameDialo
   const update = useMutation(api.documents.updateById);
   const [isUpdating, setIsUpdating] = useState(false);
   const [title, setTitle] = useState(initialTitle);
+  const [open, setOpen] = useState(false);
 
-  const onRename = async () => {
-    setIsUpdating(true);
-    await update({ id: documentId, title: title });
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsUpdating(true);   
+    await update({ id: documentId, title: title.trim() || "Untitled" });
     setIsUpdating(false);
+    setOpen(false);
   }
 
   const onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -31,20 +34,32 @@ export const RenameDialog = ({ documentId, children, initialTitle }: RenameDialo
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
         <DialogContent  onClick={(e) => e.stopPropagation()}>
-          <form>
+          <form onSubmit={onSubmit}>
             <DialogHeader>
               <DialogTitle>Rename document?</DialogTitle>
               <DialogDescription>Enter a new name for your document.</DialogDescription>
             </DialogHeader>
             <div className="my-4">
-              <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+              <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter a new name for your document..."onClick={(e) => e.stopPropagation()}/>
             </div>
             <DialogFooter>
-              <Button onClick={onCancel} disabled={isUpdating}>Cancel</Button>
-              <Button onClick={onRename} disabled={isUpdating}>Save</Button>
+              <Button 
+                type="button" 
+                variant="ghost"
+                disabled={isUpdating} 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpen(false);
+                }}>Cancel</Button>
+              <Button 
+                type="submit" 
+                disabled={isUpdating} 
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}>Save</Button>
             </DialogFooter>
           </form>
         </DialogContent>

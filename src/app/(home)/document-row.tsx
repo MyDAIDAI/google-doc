@@ -5,20 +5,17 @@ import { Building2Icon, CircleUserIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import { format } from "date-fns";
 import { DocumentMenu } from "./document-menu";
-import { AlertDialog, AlertDialogContent, AlertDialogTrigger, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog";
+import { useRouter } from "next/navigation";
 
 interface DocumentRowProps {
   document: Doc<"documents">;
 }
 
 export const DocumentRow = ({ document }: DocumentRowProps) => {
-
-  const onNewTabClick = (id: string) => {
-    window.open(`/documents/${id}`, "_blank");
-  }
+  const router = useRouter();
 
   return (
-    <TableRow className="cursor-pointer ">
+    <TableRow className="cursor-pointer " onClick={() => router.push(`/documents/${document._id}`)}>
       <TableCell>
         <SiGoogledocs className="size-6 fill-blue-500" />
       </TableCell>
@@ -36,7 +33,7 @@ export const DocumentRow = ({ document }: DocumentRowProps) => {
         <DocumentMenu 
           documentId={document._id}
           title={document.title}
-          onNewTab={onNewTabClick}
+          onNewTab={() => window.open(`/documents/${document._id}`, "_blank")}
         />
       </TableCell>
     </TableRow>
