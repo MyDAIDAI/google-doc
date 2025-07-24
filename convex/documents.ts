@@ -49,8 +49,9 @@ export const get = query({
         .paginate(args.paginationOpts);
     }
 
-    const query = ctx.db.query("documents");
-    return await query.paginate(args.paginationOpts);
+    return await ctx.db.query("documents")
+      .withIndex("by_owner_id", (q) => q.eq('ownerId', user.subject))
+      .paginate(args.paginationOpts);
   },
 });
 
