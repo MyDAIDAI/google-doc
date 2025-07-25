@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ExternalLinkIcon, MoreVertical, Trash2Icon, FilePenIcon } from "lucide-react";
 import { Id } from "../../../convex/_generated/dataModel";
-import { SiGoogledocs } from "react-icons/si";
 import { RemoveDialog } from "@/components/remove-dialog";
 import { RenameDialog } from "@/components/rename-dialog";
 

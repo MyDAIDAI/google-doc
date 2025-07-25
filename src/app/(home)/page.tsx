@@ -1,6 +1,6 @@
 "use client";
 // import Link from "next/link";
-import { useQuery, usePaginatedQuery } from "convex/react";
+import { usePaginatedQuery } from "convex/react";
 import { Navbar } from "./navbar";
 import { TemplatesGallery } from "./templates-gallery";
 import { DocumentsTable } from "./documents-table";
@@ -20,7 +20,7 @@ const Home = () => {
       <div className="mt-16">
         <TemplatesGallery />
         <DocumentsTable documents={results} status={status} loadMore={loadMore} />
-        <AlertDialog className="AlertDialogContent">
+        <AlertDialog>
           <AlertDialogTrigger asChild>弹出提示</AlertDialogTrigger>
           <AlertDialogContent onClick={(e) => e.stopPropagation()}>
             <AlertDialogHeader>

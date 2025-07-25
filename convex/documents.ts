@@ -1,4 +1,4 @@
-import { pagination, paginationOptsValidator } from "convex/server";
+import { paginationOptsValidator } from "convex/server";
 import { query, mutation } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 
@@ -36,22 +36,22 @@ export const get = query({
     paginationOpts: paginationOptsValidator,
     search: v.optional(v.string()),
   },
-  handler: async (ctx, args) => {
+  handler: async (ctx, { paginationOpts, search }) => {
     const user = await ctx.auth.getUserIdentity(); 
 
     if(!user) {
       throw new ConvexError("Unauthorized");
     }
 
-    if(args.search) {
+    if(search) {
       return await ctx.db.query("documents")
-        .withSearchIndex("search_title", (q) => q.search("title", args.search).eq('ownerId', user.subject))
-        .paginate(args.paginationOpts);
+        .withSearchIndex("search_title", (q) => q.search("title", search).eq('ownerId', user.subject))
+        .paginate(paginationOpts);
     }
 
     return await ctx.db.query("documents")
       .withIndex("by_owner_id", (q) => q.eq('ownerId', user.subject))
-      .paginate(args.paginationOpts);
+      .paginate(paginationOpts);
   },
 });
 

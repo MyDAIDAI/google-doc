@@ -6,7 +6,7 @@ import { useState } from "react";
 import { api } from "../../convex/_generated/api";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogCancel, DialogAction } from "./ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "./ui/dialog";
 
 interface RenameDialogProps {
   documentId: Id<"documents">;
@@ -26,11 +26,6 @@ export const RenameDialog = ({ documentId, children, initialTitle }: RenameDialo
     await update({ id: documentId, title: title.trim() || "Untitled" });
     setIsUpdating(false);
     setOpen(false);
-  }
-
-  const onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setTitle(initialTitle);
   }
 
   return (

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Separator } from "@/components/ui/separator";
 
 import { type ColorResult, SketchPicker } from "react-color";

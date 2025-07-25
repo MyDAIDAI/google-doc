@@ -4,7 +4,7 @@ interface FullscreenLoaderProps {
   label?: string;
 }
 
-export function FullscreenLoader({ label, className }: FullscreenLoaderProps) {
+export function FullscreenLoader({ label }: FullscreenLoaderProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-2">
       <LoaderIcon  className="size-6 text-muted-foreground animate-spin"/>
