@@ -35,11 +35,16 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## 启动项目
+
+- 前端服务：`pnpm run dev`
+- 后端服务：`npx convex dev`
+
 ## 学习nextjs项目之谷歌文档
 
 为了深入学习`nextjs`相关技术栈，开启了这个系列，该项目为谷歌文档，主要实现以下功能：
 
-- [ ] 文本编辑器
+- [x] 文本编辑器
 - [ ] 个人主页
 - [ ] 实时协同，完成相关系统设计
 
