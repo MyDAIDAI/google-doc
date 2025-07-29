@@ -37,19 +37,30 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## 启动项目
 
-- 前端服务：`pnpm run dev`
-- 后端服务：`npx convex dev`
+- `front service`: `pnpm run dev`
+- `end service`: `npx convex dev`
+
+## 主要技术栈
+
+- `react`
+- `nextjs`
+- `convex`: 数据库
+- `zustand`: 前端状态管理
+- `clerk`: 登录，注册，授权等服务
+- `lucide-react`: 样式框架
+- `lucide-react`
+- `tiptap`: 文本编辑器框架
 
 ## 学习nextjs项目之谷歌文档
 
-为了深入学习`nextjs`相关技术栈，开启了这个系列，该项目为谷歌文档，主要实现以下功能：
+为了深入学习`nextjs`相关技术栈，开启了这个系列，该项目为谷歌文档，主要实现以下功能，欢迎👏🏻大家star：
 
 - [x] 文本编辑器
-- [ ] 个人主页
+- [x] 个人首页
+- [ ] 文档增删改查
 - [ ] 实时协同，完成相关系统设计
+- [x] 使用`clerk`完成登录注册
+- [ ] 添加组织
+- [ ] 部署到`Vercel`
 
 暂时预定这些内容，以后有新的计划再加入
-
-### 文本编辑器
-
-主要使用`tiptap`
