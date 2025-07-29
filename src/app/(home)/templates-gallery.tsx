@@ -7,17 +7,22 @@ import { templates } from "@/constants/templates"
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export const TemplatesGallery = () => {
   const router = useRouter();
   const create = useMutation(api.documents.create);
   const [isCreating, setIsCreating] = useState(false);
 
-  const onTemplateClick = async (title: string, initialContent: string) => {
+  const onTemplateClick = (title: string, initialContent: string) => {
     setIsCreating(true);
-    const documentId = await create({ title, initialContent });
-    setIsCreating(false);
-    router.push(`/documents/${documentId}`);
+    create({ title, initialContent }).then((documentId) => {
+      router.push(`/documents/${documentId}`);
+    }).catch(() => {
+      toast.error("Failed to create document");
+    }).finally(() => {
+      setIsCreating(false);
+    });
   }
 
   return (

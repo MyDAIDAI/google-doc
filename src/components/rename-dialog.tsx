@@ -7,6 +7,7 @@ import { api } from "../../convex/_generated/api";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "./ui/dialog";
+import { toast } from "sonner";
 
 interface RenameDialogProps {
   documentId: Id<"documents">;
@@ -20,12 +21,17 @@ export const RenameDialog = ({ documentId, children, initialTitle }: RenameDialo
   const [title, setTitle] = useState(initialTitle);
   const [open, setOpen] = useState(false);
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsUpdating(true);   
-    await update({ id: documentId, title: title.trim() || "Untitled" });
-    setIsUpdating(false);
-    setOpen(false);
+    update({ id: documentId, title: title.trim() || "Untitled" }).then(() => {
+      toast.success("Document renamed");
+    }).catch(() => {
+      toast.error("Failed to rename document");
+    }).finally(() => {
+      setIsUpdating(false);
+      setOpen(false);
+    });
   }
 
   return (
