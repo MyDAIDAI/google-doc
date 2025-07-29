@@ -3,6 +3,13 @@ import { query, mutation } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 
 
+/**
+ * Create a new document
+ * @param args - The arguments for the mutation
+ * @param args.title - The title of the document
+ * @param args.initialContent - The initial content of the document
+ * @returns The created document
+ */
 export const create = mutation({
   args: {
     title: v.optional(v.string()),
@@ -15,22 +22,26 @@ export const create = mutation({
       throw new ConvexError("Unauthorized");
     }
 
+    const organizationId = (user.organization_id ?? undefined) as string | undefined;
+
     const document = await ctx.db.insert("documents", {
       title: args.title ?? "Untitled document",
       initialContent: args.initialContent ?? "",
       ownerId: user.subject,
+      organizationId,
     });
 
     return document;
   }
 });
 
-// export const get = query({
-//   handler: async (ctx) => {
-//     return await ctx.db.query("documents").collect();
-//   },
-// });
-
+/**
+ * Get documents
+ * @param args - The arguments for the query
+ * @param args.paginationOpts - The pagination options
+ * @param args.search - The search query
+ * @returns The documents
+ */
 export const get = query({
   args: {
     paginationOpts: paginationOptsValidator,
@@ -73,6 +84,12 @@ export const get = query({
   },
 });
 
+/**
+ * Remove a document by ID
+ * @param args - The arguments for the mutation
+ * @param args.id - The ID of the document to remove
+ * @returns The removed document
+ */
 export const removeById = mutation({
   args: {
     id: v.id("documents"),
@@ -99,6 +116,13 @@ export const removeById = mutation({
   },
 });
 
+/**
+ * Update a document by ID
+ * @param args - The arguments for the mutation
+ * @param args.id - The ID of the document to update
+ * @param args.title - The new title of the document
+ * @returns The updated document
+ */
 export const updateById = mutation({
   args: {
     id: v.id("documents"),
