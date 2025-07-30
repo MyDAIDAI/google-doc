@@ -5,6 +5,7 @@ import { DocumentInput } from "./document-input"
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@/components/ui/menubar"
 import { BoldIcon, FileIcon, FileJsonIcon, FilePenIcon, FilePlusIcon, FileTextIcon, GlobeIcon, ItalicIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, StrikethroughIcon, TextIcon, TrashIcon, Underline, Undo2Icon } from "lucide-react"
 import { BsFilePdf } from "react-icons/bs"
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
 
 export const Navbar = () => {
   return (
@@ -141,6 +142,15 @@ export const Navbar = () => {
             </Menubar>
           </div>
         </div>
+      </div>
+      <div className="flex items-center gap-3 pl-6">
+        <OrganizationSwitcher 
+          afterCreateOrganizationUrl="/"
+          afterLeaveOrganizationUrl="/"
+          afterSelectOrganizationUrl="/"
+          afterSelectPersonalUrl="/"
+        />
+        <UserButton />
       </div>
     </nav>
   )
