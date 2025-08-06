@@ -11,6 +11,10 @@
   "dependencies": {
     "@clerk/nextjs": "^6.23.3",
     "@hookform/resolvers": "^5.0.1",
+    "@liveblocks/client": "^3.2.1",
+    "@liveblocks/react": "^3.2.1",
+    "@liveblocks/react-tiptap": "^3.2.1",
+    "@liveblocks/react-ui": "^3.2.1",
     "@radix-ui/react-accordion": "^1.2.10",
     "@radix-ui/react-alert-dialog": "^1.1.13",
     "@radix-ui/react-aspect-ratio": "^1.1.6",
