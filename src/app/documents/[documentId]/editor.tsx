@@ -16,12 +16,15 @@ import TextStyle from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
 import Highlight from '@tiptap/extension-highlight';
 
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+
 
 import { useEditorStore } from "@/store/use-editor-store";
 
 export const Editor = () => {
 
   const { setEditor } = useEditorStore();
+  const liveblocks = useLiveblocksExtension();
 
   const editor = useEditor({
     onCreate({ editor }) {
@@ -54,7 +57,8 @@ export const Editor = () => {
       TableCell,
       TableHeader,
       TableRow,
-      Underline
+      Underline,
+      liveblocks,
     ],
     content: '',
   });
