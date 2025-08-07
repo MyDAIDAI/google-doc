@@ -9,6 +9,7 @@
 [![Clerk](https://img.shields.io/badge/Clerk-6.23.3-%234A6CF7?logo=clerk&logoColor=white)](https://clerk.com)
 [![Lucide React](https://img.shields.io/badge/Lucide_React-0.503.0-%23FFD43B?logo=lucide&logoColor=black)](https://lucide.dev)
 [![Tiptap](https://img.shields.io/badge/Tiptap-2.10.2-%233B82F6?logo=tiptap&logoColor=white)](https://tiptap.dev)
+[![Liveblocks](https://img.shields.io/badge/Liveblocks-2.12.2-%2300F6A9?logo=liveblocks&logoColor=white&labelColor=%230D1117)](https://liveblocks.io)
 
 ## Project Name
 
@@ -45,10 +46,10 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 - [x] 文本编辑器
 - [x] 个人首页
-- [ ] 文档增删改查
-- [ ] 实时协同，完成相关系统设计
+- [x] 文档增删改查
 - [x] 使用`clerk`完成登录注册
-- [ ] 添加组织
+- [x] 添加组织
+- [ ] 实时`liveblocks`协同，完成相关系统设计
 - [ ] 部署到`Vercel`
 
 暂时预定这些内容，以后有新的计划再加入
