@@ -38,7 +38,10 @@ export const Editor = () => {
       },
     },
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        // The Liveblocks extension comes with its own history handling
+        history: false,
+      }),
       FontFamily,
       TextStyle,
       Color,
@@ -60,6 +63,7 @@ export const Editor = () => {
       Underline,
       liveblocks,
     ],
+    immediatelyRender: false,
     content: '',
   });
 
