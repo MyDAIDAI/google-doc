@@ -20,6 +20,7 @@ import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 
 
 import { useEditorStore } from "@/store/use-editor-store";
+import { Threads } from './threads';
 
 export const Editor = () => {
 
@@ -39,7 +40,6 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit.configure({
-        // The Liveblocks extension comes with its own history handling
         history: false,
       }),
       FontFamily,
@@ -73,6 +73,7 @@ export const Editor = () => {
     <div className="size-full overflow-x-auto bg-[#F9FBFD] px-4 print:p-0 print:bg-white print:overflow-visible">
       <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full">
         <EditorContent editor={editor} />
+        <Threads editor={editor} />
       </div>
     </div>
   );

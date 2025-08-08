@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { type ColorResult, SketchPicker } from "react-color";
 import { type Level } from '@tiptap/extension-heading';
 import { cn } from "@/lib/utils";
-import { BoldIcon, ChevronDownIcon, ItalicIcon, LucideIcon, ListTodoIcon, MessageCircleIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon, HighlighterIcon } from "lucide-react";
+import { BoldIcon, ChevronDownIcon, ItalicIcon, LucideIcon, ListTodoIcon, MessageCircleIcon, MessageSquarePlusIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon, HighlighterIcon } from "lucide-react";
 import { useEditorStore } from "@/store/use-editor-store";
 import {
   DropdownMenu,
@@ -217,9 +217,9 @@ export const Toolbar = () => {
     [
       {
         label: "Comment",
-        icon: MessageCircleIcon,
-        isActive: false,
-        onClick: () => console.log('comment')
+        icon: MessageSquarePlusIcon,
+        isActive: editor?.isActive('liveblocksCommentMark'),
+        onClick: () => editor?.chain().focus().addPendingComment().run()
       },
       {
         label: "List Todo",
