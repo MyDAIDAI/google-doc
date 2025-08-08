@@ -49,7 +49,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [x] 文档增删改查
 - [x] 使用`clerk`完成登录注册
 - [x] 添加组织
-- [ ] 实时`liveblocks`协同，完成相关系统设计
+- [x] 实时`liveblocks`协同
 - [ ] 部署到`Vercel`
 
 暂时预定这些内容，以后有新的计划再加入
