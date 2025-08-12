@@ -22,7 +22,6 @@ export function Room({ children }: { children: ReactNode }) {
     () => async () => {
       try {
         const list = await getUsers();
-        debugger;
         setUsers(list);
       } catch {
         setUsers([]);
