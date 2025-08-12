@@ -1,14 +1,15 @@
 "use client";
 
 import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ClientSideSuspense } from "@liveblocks/react";
 import {
   LiveblocksProvider,
   RoomProvider,
-  ClientSideSuspense,
 } from "@liveblocks/react/suspense";
 import { useParams } from "next/navigation";
 import { getUsers } from "./actions";
 import { toast } from "sonner";
+import { FullscreenLoader } from "@/components/fullscreen-loader";
 
 type User = { id: string; name: string; avatar: string };
 
@@ -55,7 +56,7 @@ export function Room({ children }: { children: ReactNode }) {
       }}
       resolveRoomsInfo={() => []}>
       <RoomProvider id={params.documentId as string}>
-        <ClientSideSuspense fallback={<div>Loading…</div>}>
+        <ClientSideSuspense fallback={<FullscreenLoader label="Room loading..."/>}>
           {children}
         </ClientSideSuspense>
       </RoomProvider>

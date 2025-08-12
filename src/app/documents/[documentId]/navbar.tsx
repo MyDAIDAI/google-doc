@@ -6,6 +6,7 @@ import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, Me
 import { BoldIcon, FileIcon, FileJsonIcon, FilePenIcon, FilePlusIcon, FileTextIcon, GlobeIcon, ItalicIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, StrikethroughIcon, TextIcon, TrashIcon, Underline, Undo2Icon } from "lucide-react"
 import { BsFilePdf } from "react-icons/bs"
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
+import { Avatars } from "./avatars"
 
 export const Navbar = () => {
   return (
@@ -144,6 +145,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center gap-3 pl-6">
+        <Avatars />
         <OrganizationSwitcher 
           afterCreateOrganizationUrl="/"
           afterLeaveOrganizationUrl="/"
