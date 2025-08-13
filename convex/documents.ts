@@ -1,6 +1,7 @@
 import { paginationOptsValidator } from "convex/server";
 import { query, mutation } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
+import { Id } from "./_generated/dataModel";
 
 
 /**
@@ -161,5 +162,26 @@ export const getById = query({
   },
   handler: async (ctx, { id }) => {
     return await ctx.db.get(id); 
+  },
+});
+
+
+export const getByIds = query({
+  args: {
+    ids: v.array(v.id("documents")),
+  },
+  handler: async (ctx, { ids }) => {
+    const documents: { id: Id<"documents">; name: string }[] = [];
+
+    for(const id of ids) {
+      const document = await ctx.db.get(id);
+      if(document) {
+        documents.push({ id: document._id, name: document.title });
+      } else {
+        documents.push({ id: id, name: "[Removed]" });
+      }
+    }
+
+    return documents;
   },
 });

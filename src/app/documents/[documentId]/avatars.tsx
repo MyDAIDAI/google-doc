@@ -44,7 +44,7 @@ export const AvatarStack = () => {
   )
 }
 
-const AVATAR_SIZE = 36;
+const AVATAR_SIZE = 28;
 
 interface AvatarProps {
   src: string;
