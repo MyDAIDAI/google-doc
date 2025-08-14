@@ -10,6 +10,10 @@ import { Avatars } from "./avatars"
 import { Inbox } from "./inbox"
 import { Doc } from "../../../../convex/_generated/dataModel"
 import { useEditorStore } from "@/store/use-editor-store"
+import { useMutation } from "convex/react"
+import { api } from "../../../../convex/_generated/api"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
 
 interface NavbarProps {
@@ -18,7 +22,8 @@ interface NavbarProps {
 
 export const Navbar = ({ data }: NavbarProps) => {
   const { editor } = useEditorStore();
-
+  const mutation = useMutation(api.documents.create);
+  const router = useRouter();
 
   const onDownload = (blob: Blob, filename: string) => {
     const url = URL.createObjectURL(blob);
@@ -56,6 +61,19 @@ export const Navbar = ({ data }: NavbarProps) => {
     const blob = new Blob([content], { type: "text/plain" });
     onDownload(blob, `${data.title}.txt`);
   }
+
+  const onNewDocument = () => {
+    mutation({
+      title: "Untitled document",
+      initialContent: "",
+    }).then((documentId) => {
+      toast.success("New document created");
+      router.push(`/documents/${documentId}`);
+    }).catch(() => {
+      toast.error("Failed to create document");
+    });
+  }
+
   return (
     <nav className="flex items-center justify-between">
       <div className="flex gap-2 items-center">
@@ -93,7 +111,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                       </MenubarItem>
                     </MenubarSubContent>
                   </MenubarSub>
-                  <MenubarItem>
+                  <MenubarItem onClick={onNewDocument}>
                     <FilePlusIcon className="size-4 mr-2"/>
                     New Document
                   </MenubarItem>
