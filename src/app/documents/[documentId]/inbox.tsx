@@ -26,9 +26,6 @@ const InboxMenu = () => {
   const { inboxNotifications } = useInboxNotifications();
   const { documentId } = useParams();
 
-  console.log('inboxNotifications', inboxNotifications);
-  
-
   return (
     <>
       <DropdownMenu>

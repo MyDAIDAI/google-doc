@@ -8,8 +8,54 @@ import { BsFilePdf } from "react-icons/bs"
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
 import { Avatars } from "./avatars"
 import { Inbox } from "./inbox"
+import { Doc } from "../../../../convex/_generated/dataModel"
+import { useEditorStore } from "@/store/use-editor-store"
 
-export const Navbar = () => {
+
+interface NavbarProps {
+  data: Doc<"documents">;
+}
+
+export const Navbar = ({ data }: NavbarProps) => {
+  const { editor } = useEditorStore();
+
+
+  const onDownload = (blob: Blob, filename: string) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+  }
+
+  const onSaveJSON = () => {
+    if(!editor) return;
+   
+    const content = editor.getJSON();
+    const blob = new Blob([JSON.stringify(content)], { type: "application/json" });
+    onDownload(blob, `${data.title}.json`);
+  }
+
+  const onSaveHTML = () => {
+    if(!editor) return;
+    const content = editor.getHTML();
+    const blob = new Blob([content], { type: "text/html" });
+    onDownload(blob, `${data.title}.html`);
+  }
+
+  const onSavePDF = () => {
+    if(!editor) return;
+    const content = editor.getHTML();
+    const blob = new Blob([content], { type: "application/pdf" });
+    onDownload(blob, `${data.title}.pdf`);
+  }
+
+  const onSaveText = () => {
+    if(!editor) return;
+    const content = editor.getText();
+    const blob = new Blob([content], { type: "text/plain" });
+    onDownload(blob, `${data.title}.txt`);
+  }
   return (
     <nav className="flex items-center justify-between">
       <div className="flex gap-2 items-center">
@@ -17,7 +63,7 @@ export const Navbar = () => {
           <Image src="/logo.png" alt="logo" width={32} height={32 }/>
         </Link>
         <div className="flex flex-col">
-          <DocumentInput />
+          <DocumentInput title={data.title} id={data._id} />
           <div className="flex">
             <Menubar className="border-none bg-transparent shadow-none h-auto p-0 cursor-pointer">
               <MenubarMenu>
@@ -29,19 +75,19 @@ export const Navbar = () => {
                       Save
                     </MenubarSubTrigger>
                     <MenubarSubContent>
-                      <MenubarItem>
+                      <MenubarItem onClick={onSaveJSON}>
                         <FileJsonIcon className="size-4 mr-2"/>
                         JSON
                       </MenubarItem>
-                      <MenubarItem>
+                      <MenubarItem onClick={onSaveHTML}>
                         <GlobeIcon className="size-4 mr-2"/>
                         HTML
                       </MenubarItem>
-                      <MenubarItem>
+                      <MenubarItem onClick={onSavePDF}>
                         <BsFilePdf className="size-4 mr-2"/>
                         PDF
                       </MenubarItem>
-                      <MenubarItem>
+                      <MenubarItem onClick={onSaveText}>
                         <FileTextIcon className="size-4 mr-2"/>
                         Text
                       </MenubarItem>
