@@ -22,10 +22,16 @@ import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import { useEditorStore } from "@/store/use-editor-store";
 import { Threads } from './threads';
 
-export const Editor = () => {
+interface EditorProps {
+  initialContent?: string;
+}
 
+export const Editor = ({ initialContent }: EditorProps) => {
   const { setEditor } = useEditorStore();
-  const liveblocks = useLiveblocksExtension();
+  const liveblocks = useLiveblocksExtension({
+    initialContent,
+    offlineSupport_experimental: true,
+  });
 
   const editor = useEditor({
     onCreate({ editor }) {
