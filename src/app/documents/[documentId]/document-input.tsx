@@ -64,7 +64,7 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
   }
 
   const showLoader = isPending || status === "connecting" || status === "reconnecting";
-  const showError = status === "disconnected" || status === "error";
+  const showError = status === "disconnected";
 
   return (
     <div className="flex items-center gap-2">

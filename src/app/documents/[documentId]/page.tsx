@@ -1,10 +1,11 @@
 import { auth } from "@clerk/nextjs/server";
 import { preloadQuery } from "convex/nextjs";
+import { Id } from "../../../../convex/_generated/dataModel";
 import { api } from "../../../../convex/_generated/api";
 import Document from "./document";
 
 interface DocumentIdPageProps {
-  params: Promise<{ documentId: string }>;
+  params: Promise<{ documentId: Id<"documents"> }>;
 }
 
 const DocumentIdPage = async ({ params }: DocumentIdPageProps) => {

@@ -1,11 +1,10 @@
 import { BellIcon } from "lucide-react";
-import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ClientSideSuspense } from "@liveblocks/react";  
 import { useInboxNotifications } from "@liveblocks/react/suspense";
 import { InboxNotification, InboxNotificationList } from "@liveblocks/react-ui";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export const Inbox = () => {
   return (
@@ -24,7 +23,6 @@ export const Inbox = () => {
 
 const InboxMenu = () => {
   const { inboxNotifications } = useInboxNotifications();
-  const { documentId } = useParams();
 
   return (
     <>

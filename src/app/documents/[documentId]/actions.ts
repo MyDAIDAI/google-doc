@@ -12,19 +12,26 @@ export async function getDocuments(ids: Id<"documents">[]) {
   return await convex.query(api.documents.getByIds, { ids });
 }
 
+interface SessionClaims {
+  o: {
+    id: string;
+  }
+}
+
 export async function getUsers() {
-  const { sessionClaims } = await auth();
+  const { sessionClaims} = await auth();
   const clerk = await clerkClient();
 
   const response = await clerk.users.getUserList({
-    organizationId: [sessionClaims?.o.id as string],
+    organizationId: [(sessionClaims as SessionClaims)?.o?.id],
   });
 
   const users = response.data.map((user) => {
     return {
       id: user.id,
       name: user.fullName ?? (user.primaryEmailAddress?.emailAddress ?? "Annoymous"),
-      avatar: user.imageUrl
+      avatar: user.imageUrl,
+      color: '',
     }
   });
 
