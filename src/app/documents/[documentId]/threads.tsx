@@ -1,3 +1,4 @@
+import { ClientSideSuspense } from "@liveblocks/react";
 import { useThreads } from "@liveblocks/react/suspense";
 import {
   AnchoredThreads,
@@ -6,7 +7,16 @@ import {
 } from "@liveblocks/react-tiptap";
 import { Editor } from "@tiptap/react";
 
+
 export function Threads({ editor }: { editor: Editor | null }) {
+  return (
+    <ClientSideSuspense fallback={null}>
+      <ThreadList editor={editor} />
+    </ClientSideSuspense>
+  );
+}
+
+function ThreadList({ editor }: { editor: Editor | null }) {
   const { threads } = useThreads({ query: { resolved: false } });
 
   return (
